@@ -1,21 +1,22 @@
-# deploy:
-#   provider: rubygems
-#   api_key: ""
-#   on:
-#     tags: true
-
 language: ruby
 cache: bundler
 rvm:
- - 2.6
- - 2.5
- - 2.4
-
+- 2.6
+- 2.5
+- 2.4
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - bundle exec rspec
+- bundle exec rspec
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+deploy:
+  provider: rubygems
+  api_key:
+    secure: WbcT0gScK95HX/m8NH4FHDIaN0U/RU3xsXet1HyJCjMZLN/dbVT/mXl8CRLpkQQABJYhTV2Sj1JvTSN+LfOBdEqIyaw/u5dY3ChKs6N661wbE8gcPlzJ+tUmiGHz69GKaKSZZdK5aNb3F+uiOaRgJrewZcqA7VAKTsGtOGeAuR67VypftWSP6H7lT4hd4OO1BHv46A1AYjyiMRrgLZ1yBE9G7bc7Veq0WQ2mMpk7/PbPtR4g7HNNRS23x7ZgaawriLRfQm4BfBEcXhprvDZvTpguKNrqXh6He8yVz0jeSy9FiURqChUsZA0rsxByRwOhcdeq61N/4ks/Ufr6G5LYTezBjx/v0mjGNPpSNwL9IAMZlIIXm0OcN/UcDBsO2miFza0iimoQZnKAvmC7Z3yjpaWJihPd986J/nXBtQ8mjQiSACxqGvoujXcE5Y8EAnq25VMphQrymMAJ8YW32MrYhsINK66uV8ZIpBC4W+5Mjn0pzSj6Iq/h2qQCrx8cXKGvS3o1K/7OeL5zG3sMfH8q4COsv9mSVF558EL6qSX89JAlW7T1uonasg2JC9tWgi+AErx+jPuDLd5Bt0sNmYXJHXJp4SI4amIgXsll8+fdvscxXWstChN6KDAUqIJwv4RPaS9qYaXGZeGd+JRszb6shBGp8V/1I1qhUnTc9PV5hfQ=
+  gem: rubocop-public-methods
+  on:
+    tags: true
+    repo: stevenallen05/rubocop-public-methods
