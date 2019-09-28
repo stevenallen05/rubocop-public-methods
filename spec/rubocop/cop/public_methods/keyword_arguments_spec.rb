@@ -1,6 +1,6 @@
- # frozen_string_literal: true
+# frozen_string_literal: true
 
- RSpec.describe RuboCop::Cop::PublicMethods::KeywordArguments do
+RSpec.describe RuboCop::Cop::PublicMethods::KeywordArguments do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
@@ -14,7 +14,6 @@
       end
     RUBY
   end
-
 
   it 'registers an offense when using more than one positional argument in a module' do
     expect_offense(<<~RUBY)
@@ -32,7 +31,7 @@
         private
         def non_candidate_method(bacon)
         end
-        public 
+        public
         def candidate_method(bacon:)
         end
       end
@@ -71,7 +70,7 @@
       class C
         def candidate_method(bacon:)
         end
-        
+
         def non_candidate_method(bacon)
         end
         private :non_candidate_method
@@ -84,11 +83,11 @@
       class C
         def candidate_method(bacon:)
         end
-        
+
         private
         def non_candidate_method(bacon)
         end
       end
     RUBY
   end
-end 
+end

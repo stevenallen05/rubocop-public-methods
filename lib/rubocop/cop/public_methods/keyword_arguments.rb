@@ -1,6 +1,6 @@
- # frozen_string_literal: true
+# frozen_string_literal: true
 
- module RuboCop
+module RuboCop
   module Cop
     module PublicMethods
       # This cop checks for multiple positional arguments on public methods.
@@ -98,4 +98,4 @@
       end
     end
   end
-end 
+end
